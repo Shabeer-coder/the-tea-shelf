@@ -1,7 +1,7 @@
 
 
 
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,7 +14,7 @@
 
 <body>
     <div class="container mt-5">
-        <!-- Add a wrapper div with an ID for the form -->
+
         <div id="form-section">
             <h1>Add or Edit Tea Card</h1>
             <form id="add-card-form">
@@ -43,15 +43,22 @@
                     <label for="price" class="form-label">Price (₹)</label>
                     <input type="number" id="price" class="form-control" placeholder="Enter price" required>
                 </div>
+                <div class="mb-3">
+                    <label for="stock" class="form-label">Stock (units)</label>
+                    <input type="number" id="stock" class="form-control" placeholder="Enter stock quantity" required>
+                </div>
+                <input type="hidden" id="editIndex">
                 <button type="submit" id="submit-button" class="btn btn-success">Add Card</button>
             </form>
         </div>
 
         <h2 class="mt-5">Preview Tea Cards</h2>
         <div class="row" id="admin-tea-cards-container">
-            <!-- Admin cards will be displayed here -->
+
         </div>
     </div>
 </body>
 
 </html>
+
+ 

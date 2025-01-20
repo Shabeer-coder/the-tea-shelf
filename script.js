@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize the map
-    const map = L.map('map').setView([40.7128, -74.0060], 13); // Coordinates for New York City
+    
+    const map = L.map('map').setView([40.7128, -74.0060], 13); 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap contributors'
@@ -9,15 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .bindPopup('The Tea Shelf, 42 Street, New York City.')
         .openPopup();
 
-    // Fetch cards on page load
+    
     fetchCards();
 });
 
-// Fetch and render cards based on the selected category
+
 function fetchCards(category = 'all') {
     const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
     const container = document.getElementById('tea-cards-container');
-    container.innerHTML = ''; // Clear existing cards
+    container.innerHTML = ''; 
 
     const filteredCards = category === 'all' 
         ? storedCards 
@@ -41,8 +41,20 @@ function fetchCards(category = 'all') {
     });
 }
 
-// Add the missing filterByCategory function
+
 function filterByCategory() {
     const categoryFilter = document.getElementById('categoryFilter').value;
-    fetchCards(categoryFilter); // Call fetchCards with the selected category
+    fetchCards(categoryFilter); 
 }
+
+
+
+
+
+
+
+
+
+
+
+

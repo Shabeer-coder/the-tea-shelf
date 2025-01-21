@@ -98,3 +98,30 @@ document.getElementById('add-card-form').addEventListener('submit', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     renderAdminCards();
 });
+
+const orders = JSON.parse(localStorage.getItem('orders')) || [];
+const ordersTable = document.getElementById('orders-table');
+
+function renderOrders() {
+    ordersTable.innerHTML = '';
+    orders.forEach((order, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${order.name}</td>
+            <td>${order.place}</td>
+            <td>${order.phone}</td>
+            <td>₹${order.total}</td>
+            <td><button class="btn btn-danger btn-sm" onclick="deleteOrder(${index})">Delete</button></td>
+        `;
+        ordersTable.appendChild(row);
+    });
+}
+
+function deleteOrder(index) {
+    orders.splice(index, 1);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    renderOrders();
+}
+
+// Initial rendering
+renderOrders();

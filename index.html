@@ -14,30 +14,39 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-
+    <div id="preloader" class="preloader">
+        <div class="logo-blink">
+            <img src="./img/android-chrome-192x192-removebg-preview.png" alt="Logo">
+        </div>
+    </div>
+    <div id="main-content" class="hidden-content">
 <header>
-    <nav class="navbar navbar-expand-lg text-success">
+
+    <nav class="navbar navbar-expand-lg text-light bg-transparent">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active fw-semibold" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-light active fw-semibold" href="#">Home</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-semibold" href="#" id="teaDropdown" data-bs-toggle="dropdown">Tea</a>
+                        <a class="nav-link dropdown-toggle fw-semibold text-light" href="#" id="teaDropdown" data-bs-toggle="dropdown">Tea</a>
                         <ul class="dropdown-menu" aria-labelledby="teaDropdown">
-                            <li><a class="dropdown-item" href="#main">Black Tea</a></li>
+                            <li><a class="dropdown-item " href="#main">Black Tea</a></li>
                             <li><a class="dropdown-item" href="#main">Green Tea</a></li>
                             <li><a class="dropdown-item" href="#main">Herbal Tea</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link fw-semibold" href="#main">Accessories</a></li>
-                    <li class="nav-item"><a class="nav-link fw-semibold" href="#about-us">About</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold text-light" href="#main">Accessories</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold text-light" href="#about-us">About</a></li>
+
+                    
                 </ul>
                 <div class="d-flex justify-content-center w-100">
                     <a class="navbar-brand text-success fw-semibold" href="#">
@@ -46,13 +55,16 @@
                     </a>
                 </div>
                 <div class="d-flex ms-2 text-danger ">
-                    <a><i class="fa-solid fa-cart-shopping ms-2"></i></a>
+                   
 
-                    <a> <i class="fa-solid fa-heart ms-2"></i></a>
+                    <a href="#" onclick="toggleCartPanel()"><i class="fa-solid fa-cart-shopping ms-2 text-light"></i></a>
+                    <a href="#" onclick="toggleWishlistPanel()"><i class="fa-solid fa-heart ms-2 text-danger"></i></a>
                 </div>
             </div>
         </div>
     </nav>
+
+
 </header>
 
 <section id="main" class="container-fluid mt-5">
@@ -79,6 +91,7 @@
                     <p class="fw-bold text-success">₹300</p>
                     <p class="text-danger fw-bold">Stock: <span class="stock-count">20</span></p>
                     <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                    
                 </div>
             </div>
         </div>
@@ -202,6 +215,45 @@
 </section>
 
 
+
+
+
+
+
+    <!-- Cart Panel -->
+  
+
+    <!-- Cart Panel -->
+<aside id="cart-panel" class="offcanvas offcanvas-end">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Shopping Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul id="cart-items" class="list-unstyled">
+            <!-- Dynamically added items will appear here -->
+        </ul>
+        <p class="text-end"><strong>Total: ₹<span id="cart-total">0.00</span></strong></p>
+        <button id="buy-now-button" class="btn btn-success w-100">Buy Now</button>
+    </div>
+</aside>
+
+<!-- Wishlist Panel -->
+<aside id="wishlist-panel" class="offcanvas offcanvas-end">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Wishlist</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul id="wishlist-items" class="list-unstyled">
+            <!-- Dynamically added wishlist items will appear here -->
+        </ul>
+    </div>
+</aside>
+
+
+
+
     
 
 <footer class="container-fluid p-5 bg-dark text-white">
@@ -248,7 +300,7 @@
 
 
 
-
+    </div>
 <script src="script.js"></script>
 </body>
 </html> 

@@ -1,11 +1,5 @@
 
 
-
-
-
-
-
-
 // function renderAdminCards() {
 //     const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
 //     const container = document.getElementById('admin-tea-cards-container');
@@ -22,8 +16,12 @@
 //                         <p class="card-text"><strong>Price:</strong> ₹${card.price}</p>
 //                         <p class="card-text"><strong>Stock:</strong> ${card.stock} units</p>
 //                         <p class="card-text"><small class="text-muted">${card.category}</small></p>
-//                         <button class="btn btn-primary btn-sm edit-card" data-index="${index}">Edit</button>
-//                         <button class="btn btn-danger btn-sm delete-card" data-index="${index}">Delete</button>
+//                         <button class="btn btn-sm edit-card" data-index="${index}" title="Edit">
+//                             <i class="fas fa-edit text-primary"></i>
+//                         </button>
+//                         <button class="btn btn-sm delete-card" data-index="${index}" title="Delete">
+//                             <i class="fas fa-trash-alt text-danger"></i>
+//                         </button>
 //                     </div>
 //                 </div>
 //             </div>
@@ -33,14 +31,14 @@
 
 //     document.querySelectorAll('.delete-card').forEach(button => {
 //         button.addEventListener('click', (e) => {
-//             const index = e.target.getAttribute('data-index');
+//             const index = e.target.closest('button').getAttribute('data-index');
 //             deleteCard(index);
 //         });
 //     });
 
 //     document.querySelectorAll('.edit-card').forEach(button => {
 //         button.addEventListener('click', (e) => {
-//             const index = e.target.getAttribute('data-index');
+//             const index = e.target.closest('button').getAttribute('data-index');
 //             editCard(index);
 //         });
 //     });
@@ -110,95 +108,12 @@
 //     renderAdminCards();
 // });
 
-// // Render Orders
-// const orders = JSON.parse(localStorage.getItem('orders')) || [];
-// const ordersTable = document.getElementById('orders-table');
-
+// // Render Orders with Font Awesome Icons
 // function renderOrders() {
+//     const orders = JSON.parse(localStorage.getItem('orders')) || [];
+//     const ordersTable = document.getElementById('orders-table');
 //     ordersTable.innerHTML = '';
-//     orders.forEach((order, index) => {
-//         const row = document.createElement('tr');
-//         row.innerHTML = `
-//             <td>${order.name}</td>
-//             <td>${order.place}</td>
-//             <td>${order.phone}</td>
-//             <td>₹${order.total}</td>
-//             <td><button class="btn btn-danger btn-sm" onclick="deleteOrder(${index})">Delete</button></td>
-//         `;
-//         ordersTable.appendChild(row);
-//     });
-// }
 
-// // Delete Order with Confirmation
-// function deleteOrder(index) {
-//     const confirmDelete = confirm('Are you sure you want to delete this order?');
-//     if (confirmDelete) {
-//         orders.splice(index, 1);
-//         localStorage.setItem('orders', JSON.stringify(orders));
-//         renderOrders();
-//     }
-// }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     renderAdminCards();
-//     renderOrders();
-// });
-
-
-
-
-
-
-
-
-
-
-// function renderAdminCards() {
-//     const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
-//     const container = document.getElementById('admin-tea-cards-container');
-//     container.innerHTML = '';
-
-//     storedCards.forEach((card, index) => {
-//         const cardElement = `
-//             <div class="col-md-4 mb-4">
-//                 <div class="card">
-//                     <img src="${card.imageUrl}" class="card-img-top" alt="${card.title}">
-//                     <div class="card-body">
-//                         <h5 class="card-title">${card.title}</h5>
-//                         <p class="card-text">${card.description}</p>
-//                         <p class="card-text"><strong>Price:</strong> ₹${card.price}</p>
-//                         <p class="card-text"><strong>Stock:</strong> ${card.stock} units</p>
-//                         <p class="card-text"><small class="text-muted">${card.category}</small></p>
-//                         <button class="btn btn-sm edit-card" data-index="${index}" title="Edit">
-//                             <i class="fas fa-edit text-primary"></i>
-//                         </button>
-//                         <button class="btn btn-sm delete-card" data-index="${index}" title="Delete">
-//                             <i class="fas fa-trash-alt text-danger"></i>
-//                         </button>
-//                     </div>
-//                 </div>
-//             </div>
-//         `;
-//         container.innerHTML += cardElement;
-//     });
-
-//     document.querySelectorAll('.delete-card').forEach(button => {
-//         button.addEventListener('click', (e) => {
-//             const index = e.target.closest('button').getAttribute('data-index');
-//             deleteCard(index);
-//         });
-//     });
-
-//     document.querySelectorAll('.edit-card').forEach(button => {
-//         button.addEventListener('click', (e) => {
-//             const index = e.target.closest('button').getAttribute('data-index');
-//             editCard(index);
-//         });
-//     });
-// }
-
-// function renderOrders() {
-//     ordersTable.innerHTML = '';
 //     orders.forEach((order, index) => {
 //         const row = document.createElement('tr');
 //         row.innerHTML = `
@@ -216,9 +131,71 @@
 //     });
 // }
 
+// // Delete Order with Confirmation
+// function deleteOrder(index) {
+//     const orders = JSON.parse(localStorage.getItem('orders')) || [];
+//     const confirmDelete = confirm('Are you sure you want to delete this order?');
+//     if (confirmDelete) {
+//         orders.splice(index, 1);
+//         localStorage.setItem('orders', JSON.stringify(orders));
+//         renderOrders();
+//     }
+// }
+
+// // Initialize
+// document.addEventListener('DOMContentLoaded', () => {
+//     renderAdminCards();
+//     renderOrders();
+// });
 
 
-// Render Admin Cards with Font Awesome Icons
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Check session login status
+    const isLoggedIn = sessionStorage.getItem('loggedIn') === 'true';
+    console.log('Login Status (sessionStorage):', isLoggedIn); // Debug log
+
+    // Redirect to login page if not logged in
+    if (!isLoggedIn) {
+        alert('You must log in to access this page.');
+        window.location.href = 'login.html'; // Redirect to login page
+        return; // Stop further script execution
+    }
+
+    // If logged in, initialize admin page
+    console.log('User is logged in. Initializing admin panel...');
+    initializeAdminPanel();
+});
+
+// Function to initialize admin panel
+function initializeAdminPanel() {
+    renderAdminCards();
+    renderOrders();
+}
+
+// Example: Log out function (optional)
+document.getElementById('logout-button')?.addEventListener('click', () => {
+    sessionStorage.removeItem('loggedIn'); // Clear session login state
+    alert('You have been logged out.');
+    window.location.href = 'login.html'; // Redirect to login page
+});
+
+
+// Function to initialize admin panel
+function initializeAdminPanel() {
+    renderAdminCards();
+    renderOrders();
+}
+
+// Function to render admin cards
 function renderAdminCards() {
     const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
     const container = document.getElementById('admin-tea-cards-container');
@@ -248,6 +225,11 @@ function renderAdminCards() {
         container.innerHTML += cardElement;
     });
 
+    attachCardEventListeners();
+}
+
+// Attach event listeners for card actions
+function attachCardEventListeners() {
     document.querySelectorAll('.delete-card').forEach(button => {
         button.addEventListener('click', (e) => {
             const index = e.target.closest('button').getAttribute('data-index');
@@ -263,7 +245,7 @@ function renderAdminCards() {
     });
 }
 
-// Delete Card with Confirmation
+// Delete a card
 function deleteCard(index) {
     const confirmDelete = confirm('Are you sure you want to delete this card?');
     if (confirmDelete) {
@@ -274,7 +256,7 @@ function deleteCard(index) {
     }
 }
 
-// Edit Card with Confirmation
+// Edit a card
 function editCard(index) {
     const confirmEdit = confirm('Are you sure you want to edit this card?');
     if (confirmEdit) {
@@ -297,7 +279,7 @@ function editCard(index) {
     }
 }
 
-// Add or Update Card
+// Add or update a card
 document.getElementById('add-card-form').addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -327,7 +309,7 @@ document.getElementById('add-card-form').addEventListener('submit', (e) => {
     renderAdminCards();
 });
 
-// Render Orders with Font Awesome Icons
+// Render orders
 function renderOrders() {
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     const ordersTable = document.getElementById('orders-table');
@@ -350,7 +332,7 @@ function renderOrders() {
     });
 }
 
-// Delete Order with Confirmation
+// Delete an order
 function deleteOrder(index) {
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     const confirmDelete = confirm('Are you sure you want to delete this order?');
@@ -360,9 +342,3 @@ function deleteOrder(index) {
         renderOrders();
     }
 }
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    renderAdminCards();
-    renderOrders();
-});

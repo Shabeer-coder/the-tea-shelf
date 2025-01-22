@@ -26,24 +26,22 @@
 
     <script>
         // Hardcoded admin credentials (replace with real authentication method for production)
-        const adminUsername = 'admin';
-        const adminPassword = 'password123';
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
 
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    // Example login validation (replace with real validation logic)
+    if (username === 'admin' && password === '1234') {
+        sessionStorage.setItem('loggedIn', 'true'); // Set session login state
+        alert('Login successful!');
+        window.location.href = 'admin.html'; // Redirect to admin page
+    } else {
+        alert('Invalid username or password. Please try again.');
+    }
+});
 
-            if (username === adminUsername && password === adminPassword) {
-                // Store login status in localStorage
-                localStorage.setItem('loggedIn', 'true');
-                // Redirect to the admin page
-                window.location.href = 'admin.html';  // Replace 'admin.html' with your admin page URL
-            } else {
-                alert('Invalid username or password!');
-            }
-        });
     </script>
 </body>
 

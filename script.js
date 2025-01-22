@@ -468,6 +468,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+
+
 function fetchCards(category = 'all') {
     const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
     const container = document.getElementById('tea-cards-container');

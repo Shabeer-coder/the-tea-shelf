@@ -570,3 +570,7 @@ aside {
     object-fit: cover;
     margin-right: 15px;
 }
+.out-of-stock {
+    color: red;
+    font-weight: bold;
+}

@@ -554,3 +554,19 @@ footer .text-center {
     font-size: 1.2rem;
     font-weight: bold;
 }
+aside {
+    width: 300px; /* Increase this value for more space */
+    padding: 15px; /* Add padding for better spacing inside */
+}
+
+/* If the aside contains a cart, you may want to adjust margins for other elements */
+#cart-panel {
+    width: 40%; /* Ensure it spans the entire width of the aside */
+    margin-right: 20px; /* Additional margin if needed */
+}
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 15px;
+}

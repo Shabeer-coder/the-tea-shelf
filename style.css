@@ -1,9 +1,13 @@
 
-body {
+
+
+
+ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
+
 .preloader {
     position: fixed;
     top: 0;
@@ -19,9 +23,8 @@ body {
     transition: opacity 1s ease;
 }
 
-/* Blinking Logo Image */
 .logo-blink img {
-    width: 100px;  /* Adjust width as needed */
+    width: 100px;
     height: auto;
     animation: blink 1.5s infinite alternate;
 }
@@ -35,26 +38,44 @@ body {
     }
 }
 
-/* Hide the content initially */
 .hidden-content {
     display: none;
 }
-header {
-    background: url(" https://cdn.pixabay.com/photo/2016/01/10/21/05/tea-1132529_1280.jpg  ");
-    background-size: cover;
-    height: 100vh;
-    position: relative;
-}
+
+
 
 .navbar {
     position: absolute;
-    top: 0;
+    
     width: 100%;
     z-index: 1;
-    color: rgb(255, 255, 255);
-    background-color: #ffffff;
+    
 }
 
+
+.navbar {
+    background-color: transparent !important;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.carousel-item img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.hidden-content {
+    display: none;
+}
 
 .header-content {
     display: flex;
@@ -79,18 +100,17 @@ header h1 {
 header p {
     color: #ffffff;
 }
-#main{
+
+#main {
     background-color: rgb(255, 255, 255);
-    
-    
 }
-#main h3{
+
+#main h3 {
     text-align: center;
     margin-top: 5px;
-} 
- General Card Stylin 
+}
+
 .card {
-    
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -104,9 +124,9 @@ header p {
 }
 
 .card-img-top {
-    height: 200px;   
+    height: 200px;
     padding: 20px;
-    object-fit:contain   
+    object-fit: contain;
 }
 
 .card-body {
@@ -206,18 +226,21 @@ header p {
         font-size: 1rem;
     }
 }
- .Overview a{
+
+.Overview a {
     text-decoration: none;
     color: #ffffff;
-    display:block;
+    display: block;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
+}
 
-
-} 
 #map {
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        height: 100%; /* Fill the full height of the page */
+
 }
 
 #contact-us {
@@ -259,8 +282,6 @@ header p {
         height: 300px;
     }
 }
-
-
 
 #testimonials {
     background: linear-gradient(to bottom, #ffffff, #f3f4f6);
@@ -318,7 +339,6 @@ h2 {
     font-weight: 700;
 }
 
-
 #testimonials {
     background: linear-gradient(to bottom, #e9f7ef, #d4efdf);
     color: #155724;
@@ -362,8 +382,6 @@ h2 {
     color: #117a65;
     font-weight: 700;
 }
-
-
 
 footer {
     background: #000000;
@@ -437,23 +455,16 @@ footer .text-center {
     footer .text-center p {
         font-size: 0.85rem;
     }
-} 
+}
 
-
-
-
-
-
-
-/* Product cards and hover styles */
 .card .actions {
     display: none;
 }
+
 .card:hover .actions {
     display: block;
 }
 
-/* Side panel styles */
 .offcanvas {
     position: fixed;
     top: 0;
@@ -466,21 +477,80 @@ footer .text-center {
     overflow-y: auto;
     transition: right 0.3s;
 }
+
 .offcanvas.open {
     right: 0;
 }
+
 .offcanvas h4 {
     margin-bottom: 20px;
 }
 
+/* Panel Styling */
+.offcanvas {
+    border-left: 2px solid #ddd;
+}
 
+.offcanvas-header {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+}
 
+.offcanvas-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
 
+/* List Items Styling */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    padding: 1rem 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #ddd;
+}
 
+.list-group-item:last-child {
+    border-bottom: none;
+}
 
+.list-group-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 1rem;
+}
 
+.list-group-flush {
+    padding: 0;
+}
 
+/* Buttons Styling */
+#buy-now-button {
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+}
 
+.btn-close {
+    background-color: #e0e0e0;
+    border-radius: 50%;
+}
 
+/* Total Styling */
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
+.offcanvas-body .fw-bold {
+    font-size: 1rem;
+}
 
+.text-success {
+    font-size: 1.2rem;
+    font-weight: bold;
+}

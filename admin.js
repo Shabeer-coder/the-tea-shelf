@@ -1,6 +1,11 @@
 
 
 
+
+
+
+
+
 function renderAdminCards() {
     const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
     const container = document.getElementById('admin-tea-cards-container');
@@ -41,31 +46,41 @@ function renderAdminCards() {
     });
 }
 
+// Delete Card with Confirmation
 function deleteCard(index) {
-    const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
-    storedCards.splice(index, 1);
-    localStorage.setItem('teaCards', JSON.stringify(storedCards));
-    renderAdminCards();
+    const confirmDelete = confirm('Are you sure you want to delete this card?');
+    if (confirmDelete) {
+        const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
+        storedCards.splice(index, 1);
+        localStorage.setItem('teaCards', JSON.stringify(storedCards));
+        renderAdminCards();
+    }
 }
 
+// Edit Card with Confirmation
 function editCard(index) {
-    const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
-    const cardToEdit = storedCards[index];
+    const confirmEdit = confirm('Are you sure you want to edit this card?');
+    if (confirmEdit) {
+        const storedCards = JSON.parse(localStorage.getItem('teaCards')) || [];
+        const cardToEdit = storedCards[index];
 
-    document.getElementById('title').value = cardToEdit.title;
-    document.getElementById('description').value = cardToEdit.description;
-    document.getElementById('category').value = cardToEdit.category;
-    document.getElementById('imageUrl').value = cardToEdit.imageUrl;
-    document.getElementById('price').value = cardToEdit.price;
-    document.getElementById('stock').value = cardToEdit.stock;
+        document.getElementById('title').value = cardToEdit.title;
+        document.getElementById('description').value = cardToEdit.description;
+        document.getElementById('category').value = cardToEdit.category;
+        document.getElementById('imageUrl').value = cardToEdit.imageUrl;
+        document.getElementById('price').value = cardToEdit.price;
+        document.getElementById('stock').value = cardToEdit.stock;
 
-    const submitButton = document.getElementById('submit-button');
-    submitButton.textContent = 'Update Card';
-    submitButton.dataset.editIndex = index;
-    const formSection = document.getElementById('form-section');
-     formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const submitButton = document.getElementById('submit-button');
+        submitButton.textContent = 'Update Card';
+        submitButton.dataset.editIndex = index;
+
+        const formSection = document.getElementById('form-section');
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
+// Add or Update Card
 document.getElementById('add-card-form').addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -95,10 +110,7 @@ document.getElementById('add-card-form').addEventListener('submit', (e) => {
     renderAdminCards();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    renderAdminCards();
-});
-
+// Render Orders
 const orders = JSON.parse(localStorage.getItem('orders')) || [];
 const ordersTable = document.getElementById('orders-table');
 
@@ -117,11 +129,17 @@ function renderOrders() {
     });
 }
 
+// Delete Order with Confirmation
 function deleteOrder(index) {
-    orders.splice(index, 1);
-    localStorage.setItem('orders', JSON.stringify(orders));
-    renderOrders();
+    const confirmDelete = confirm('Are you sure you want to delete this order?');
+    if (confirmDelete) {
+        orders.splice(index, 1);
+        localStorage.setItem('orders', JSON.stringify(orders));
+        renderOrders();
+    }
 }
 
-// Initial rendering
-renderOrders();
+document.addEventListener('DOMContentLoaded', () => {
+    renderAdminCards();
+    renderOrders();
+});

@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    
+    <style>
+        .payment-section {
+            display: none;
+        }
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+    </style>
+    <script src="./"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Payment Page</h1>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4>Order Summary</h4>
+            </div>
+            <div class="card-body">
+                <p><strong>Cart Total:</strong> ₹<span id="cart-total-display">0.00</span></p>
+                <p><strong>Grand Total:</strong> ₹<span id="grand-total-display">0.00</span></p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-secondary text-white">
+                <h4>Payment Information</h4>
+            </div>
+            <div class="card-body">
+                <form id="payment-form">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name on Card</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="place" class="form-label">Place</label>
+                        <input type="text" class="form-control" id="place" placeholder="Enter your place" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card-number" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="expiry-date" class="form-label">Expiry Date</label>
+                            <input type="date" class="form-control" id="expiry-date" placeholder="DD/MM/YY" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" onclick="proceedToPayment()">Proceed to Payment</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="payment-processing" class="payment-section">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="text-center">Payment Processing...</h4>
+                    <div class="loading-spinner">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="payment-success" class="payment-section text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="text-success">Payment Successful!</h3>
+                    <p>Thank you for your purchase. Your order has been placed successfully.</p>
+                    <a href="index.html" class="btn btn-success">Go to main page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+ 
+
+
+
+      
+</body>
+</html>

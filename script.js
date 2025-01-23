@@ -2,9 +2,6 @@
 
 
 
-
-
-
 window.addEventListener('load', function () {
     const preloader = document.getElementById('preloader');
     const mainContent = document.getElementById('main-content');
@@ -244,6 +241,87 @@ document.getElementById("buy-now-button").addEventListener("click", function () 
         alert("Your cart is empty. Add items before proceeding to payment.");
     }
 });
+
+
+
+// Initialize wishlist from local storage
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+// Function to save wishlist to local storage
+function saveWishlistToLocalStorage() {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
+
+// Add Item to Wishlist
+function addToWishlist(itemName, price) {
+    const teaCards = JSON.parse(localStorage.getItem("teaCards")) || [];
+    const teaCard = teaCards.find(card => card.title === itemName);
+
+    if (!teaCard) {
+        alert("This item is no longer available.");
+        return;
+    }
+
+    const existingItem = wishlist.find(item => item.name === itemName);
+
+    if (!existingItem) {
+        wishlist.push({ name: itemName, price: price, imageUrl: teaCard.imageUrl });
+        showAlert(`${itemName} has been added to your wishlist.`);
+    } else {
+        alert(`${itemName} is already in your wishlist.`);
+    }
+
+    saveWishlistToLocalStorage(); // Save updated wishlist to local storage
+    renderWishlist(); // Render wishlist items
+}
+
+// Render Wishlist Items
+function renderWishlist() {
+    const wishlistItems = document.getElementById("wishlist-items");
+    wishlistItems.innerHTML = ''; // Clear existing items
+
+    if (wishlist.length === 0) {
+        wishlistItems.innerHTML = '<li class="text-center">Your wishlist is empty.</li>';
+        return; // Exit if the wishlist is empty
+    }
+
+    wishlist.forEach(item => {
+        const itemHTML = `
+            <li class="d-flex justify-content-between align-items-center mb-3">
+                <img src="${item.imageUrl}" alt="${item.name}" class="img-fluid cart-item-image" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+                <span class="item-name">${item.name}</span> - ₹<span class="item-price">${item.price}</span>
+                <button class="btn btn-danger btn-sm" onclick="removeFromWishlist('${item.name}')">Remove</button>
+            </li>
+        `;
+        wishlistItems.insertAdjacentHTML("beforeend", itemHTML);
+    });
+}
+
+// Remove Item from Wishlist
+function removeFromWishlist(itemName) {
+    console.log(`Removing item: ${itemName}`); // Debugging statement
+    wishlist = wishlist.filter(item => item.name !== itemName);
+    console.log(`Updated wishlist:`, wishlist); // Debugging statement
+    saveWishlistToLocalStorage(); // Update local storage
+    renderWishlist(); // Re-render wishlist items
+}
+
+// Toggle Wishlist Panel
+function toggleWishlistPanel() {
+    const wishlistPanel = document.getElementById("wishlist-panel");
+    const bootstrapOffcanvas = new bootstrap.Offcanvas(wishlistPanel);
+    bootstrapOffcanvas.show();
+    renderWishlist(); // Render wishlist items when the panel is opened
+}
+
+
+
+
+
+
+
+
+
 
 
 
